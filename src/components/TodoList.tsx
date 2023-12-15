@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Todos } from "../types/global.d";
+import { useDispatch, useSelector } from "react-redux";
+import { changeTodo, deletedTodo } from "../sherd/modules/TodoSlice";
 
 type Props = {
   todoList: Todos[];
@@ -8,32 +10,27 @@ type Props = {
   isDone: boolean;
 };
 
-function TodoList({ todoList, setTodoList, isDone }: Props) {
+function TodoList({ isDone }: Props) {
+  const todolist = useSelector((state) => console.log(state));
+  console.log(todolist);
+  const dispatch = useDispatch();
+  // 삭제버튼
   const removeBtnHandler = (item: Todos) => {
-    const newTodo = todoList.filter((list) => {
-      return list.id !== item.id;
-    });
-    setTodoList(newTodo);
+    dispatch(deletedTodo(item));
   };
   const changedIsDoneBtnHandler = (item: Todos) => {
-    const changedIsDone = todoList.map((todo) => {
-      if (todo.id === item.id) {
-        return { ...item, isDone: !item.isDone };
-      } else {
-        return todo;
-      }
-    });
-    setTodoList(changedIsDone);
+    dispatch(changeTodo(item));
   };
   return (
     <div>
       <ScTodoWrapper>
         <h3>{isDone ? "⭐️ Done" : "📚 Working"}</h3>
-        {todoList
-          .filter((item) => {
+        {todolist
+          .filter((item: Todos) => {
             return item.isDone === isDone;
           })
           .map((item) => {
+            console.log(item);
             return (
               <ScTodoBox key={item.id}>
                 <h4>{item.title}</h4>

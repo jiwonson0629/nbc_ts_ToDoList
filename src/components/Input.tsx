@@ -3,6 +3,8 @@ import { ChangeEvent } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { Todos } from "../types/global.d";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../sherd/modules/TodoSlice";
 // @ts-ignore
 import uuid from "react-uuid";
 
@@ -12,6 +14,7 @@ type Props = {
 };
 
 function Input({ todoList, setTodoList }: Props) {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
 
@@ -28,7 +31,7 @@ function Input({ todoList, setTodoList }: Props) {
       content,
       isDone: false,
     };
-    setTodoList([newTodo, ...todoList]);
+    dispatch(addTodo(newTodo));
     setTitle("");
     setContent("");
   };
