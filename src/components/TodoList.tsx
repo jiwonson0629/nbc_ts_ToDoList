@@ -40,7 +40,7 @@ function TodoList({ todoList, setTodoList, isDone }: Props) {
                 <p>{item.content}</p>
                 <ScBtnWrapper>
                   <button onClick={() => changedIsDoneBtnHandler(item)}>
-                    완료
+                    {isDone ? "취소" : "완료"}
                   </button>
                   <button onClick={() => removeBtnHandler(item)}>삭제</button>
                 </ScBtnWrapper>
