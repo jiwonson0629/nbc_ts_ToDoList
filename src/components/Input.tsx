@@ -8,12 +8,7 @@ import { addTodo } from "../sherd/modules/TodoSlice";
 // @ts-ignore
 import uuid from "react-uuid";
 
-type Props = {
-  todoList: Todos[];
-  setTodoList: React.Dispatch<React.SetStateAction<Todos[]>>;
-};
-
-function Input({ todoList, setTodoList }: Props) {
+function Input() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
@@ -38,8 +33,8 @@ function Input({ todoList, setTodoList }: Props) {
 
   return (
     <ScInputBox>
-      제목 : <input value={title} onChange={titleOnchangeHandler} />
-      내용: <input value={content} onChange={contentOnchangeHandler} />
+      제목 : <input required value={title} onChange={titleOnchangeHandler} />
+      내용: <input required value={content} onChange={contentOnchangeHandler} />
       <button onClick={onClickBtnHandler}>등록하기</button>
     </ScInputBox>
   );

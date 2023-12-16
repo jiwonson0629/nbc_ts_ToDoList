@@ -24,17 +24,9 @@ function App() {
           <h1>To Do List</h1>
         </ScHeader>
         <div>
-          <Input todoList={todoList} setTodoList={setTodoList} />
-          <TodoList
-            todoList={todoList}
-            setTodoList={setTodoList}
-            isDone={false}
-          />
-          <TodoList
-            todoList={todoList}
-            setTodoList={setTodoList}
-            isDone={true}
-          />
+          <Input />
+          <TodoList isDone={false} />
+          <TodoList isDone={true} />
         </div>
       </ScContainer>
     </ScBody>
