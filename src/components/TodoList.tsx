@@ -32,7 +32,7 @@ function TodoList({ isDone }: Props) {
   };
 
   const changedIsDoneBtnHandler = async (id: string) => {
-    await axios.patch(`http://localhost:4000/todos/${id}`);
+    await axios.patch(`http://localhost:4000/todos/${id}`, { isDone: !isDone });
     dispatch(changeTodo(id));
   };
 
@@ -74,6 +74,7 @@ const ScTodoBox = styled.div`
   padding: 10px;
   margin: 10px;
 `;
+
 const ScBtnWrapper = styled.div`
   display: flex;
   gap: 10px;
