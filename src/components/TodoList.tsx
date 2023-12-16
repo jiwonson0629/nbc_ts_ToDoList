@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Todos } from "../types/global.d";
 import { useDispatch, useSelector } from "react-redux";
 import { changeTodo, deletedTodo } from "../sherd/modules/TodoSlice";
 import { RootState } from "../sherd/config";
+import { useEffect } from "react";
+import { Todos } from "../types/global.d";
+import axios from "axios";
+import { useState } from "react";
 
 type Props = {
   isDone: boolean;
@@ -11,14 +14,25 @@ type Props = {
 
 function TodoList({ isDone }: Props) {
   const todolist = useSelector((state: RootState) => state.TodoSlice);
+  const [todo, setTodo] = useState<Todos[]>([]);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    const facthData = async () => {
+      const { data } = await axios.get("http://localhost:4000/todos");
+      setTodo(data);
+    };
+    facthData();
+  }, [todolist]);
+
   // 삭제버튼
-  const removeBtnHandler = (id: string) => {
+  const removeBtnHandler = async (id: string) => {
+    await axios.delete(`http://localhost:4000/todos/${id}`);
     dispatch(deletedTodo(id));
   };
 
-  const changedIsDoneBtnHandler = (id: string) => {
+  const changedIsDoneBtnHandler = async (id: string) => {
+    await axios.patch(`http://localhost:4000/todos/${id}`);
     dispatch(changeTodo(id));
   };
 
@@ -26,7 +40,7 @@ function TodoList({ isDone }: Props) {
     <div>
       <ScTodoWrapper>
         <h3>{isDone ? "⭐️ Done" : "📚 Working"}</h3>
-        {todolist
+        {todo
           .filter((item) => {
             return item.isDone === isDone;
           })

@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "../sherd/modules/TodoSlice";
 // @ts-ignore
 import uuid from "react-uuid";
+import axios from "axios";
 
 function Input() {
   const dispatch = useDispatch();
@@ -19,14 +20,17 @@ function Input() {
   const contentOnchangeHandler = (e: ChangeEvent<HTMLInputElement>) => [
     setContent(e.target.value),
   ];
-  const onClickBtnHandler = () => {
+  const onClickBtnHandler = async () => {
     const newTodo: Todos = {
       id: uuid(),
       title,
       content,
       isDone: false,
     };
-    dispatch(addTodo(newTodo));
+
+    const { data } = await axios.post("http://localhost:4000/todos", newTodo);
+
+    dispatch(addTodo(data));
     setTitle("");
     setContent("");
   };
