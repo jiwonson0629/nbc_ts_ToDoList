@@ -1,28 +1,16 @@
 {
   "todos": [
     {
-      "id": "20f5dd55-3650-0698-c293-b4b40c4aaa76",
-      "title": "ㅁㅁㅁㅁ",
-      "content": "ㅁㅁㄴㅇㄹ",
-      "isDone": true
-    },
-    {
-      "id": "037dacff-ff09-c5b1-dfd9-2a8729d873e7",
-      "title": "asdf",
-      "content": "agaggds",
-      "isDone": true
-    },
-    {
-      "id": "d7fff6ea-aa2f-9591-4a28-07b3fa28d47b",
-      "title": "삭제할 데이터",
-      "content": "완료 취소 변경",
+      "id": "34e13566-229c-e017-06e3-68e6e0efd720",
+      "title": "리엑트",
+      "content": "강의듣기",
       "isDone": false
     },
     {
-      "id": "d1760d48-7b23-3f75-b9d7-b860a44b987a",
-      "title": "",
-      "content": "",
-      "isDone": false
+      "id": "58e9c70c-0a8a-468b-66eb-00b34514bfa6",
+      "title": "리엑트 ",
+      "content": "리엑트 쿼리 공부",
+      "isDone": true
     }
   ]
 }

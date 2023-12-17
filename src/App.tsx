@@ -1,22 +1,8 @@
-import React from "react";
 import Input from "./components/Input";
 import TodoList from "./components/TodoList";
-import { useState } from "react";
 import styled from "styled-components";
-import { Todos } from "./types/global.d";
-// @ts-ignore
-import uuid from "react-uuid";
 
 function App() {
-  const [todoList, setTodoList] = useState<Todos[]>([
-    {
-      id: uuid(),
-      title: "공부",
-      content: "리엑트",
-      isDone: false,
-    },
-  ]);
-
   return (
     <ScBody>
       <ScContainer>
