@@ -1,22 +1,8 @@
 // @ts-ignore
 import { createSlice } from "@reduxjs/toolkit";
-import uuid from "react-uuid";
 import { Todos } from "../../types/global.d";
 
-const initialState: Todos[] = [
-  {
-    id: uuid(),
-    title: "공부",
-    content: "리엑트",
-    isDone: false,
-  },
-  {
-    id: uuid(),
-    title: "리덕스",
-    content: "강의",
-    isDone: true,
-  },
-];
+const initialState: Todos[] = [];
 
 export const todoSlice = createSlice({
   name: "Todo",

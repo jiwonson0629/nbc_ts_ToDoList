@@ -3,16 +3,21 @@ import { ChangeEvent } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { Todos } from "../types/global.d";
-import { useDispatch } from "react-redux";
-import { addTodo } from "../sherd/modules/TodoSlice";
 // @ts-ignore
 import uuid from "react-uuid";
-import axios from "axios";
+import { useMutation, useQueryClient } from "react-query";
+import { addTodo } from "../api/TodoApi";
+import { FormEvent } from "react";
 
 function Input() {
-  const dispatch = useDispatch();
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
+  const queryClient = useQueryClient();
+  const mutation = useMutation(addTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+    },
+  });
 
   const titleOnchangeHandler = (e: ChangeEvent<HTMLInputElement>) => [
     setTitle(e.target.value),
@@ -20,37 +25,49 @@ function Input() {
   const contentOnchangeHandler = (e: ChangeEvent<HTMLInputElement>) => [
     setContent(e.target.value),
   ];
-  const onClickBtnHandler = async () => {
+  const onClickBtnHandler = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const newTodo: Todos = {
       id: uuid(),
       title,
       content,
       isDone: false,
     };
-
-    const { data } = await axios.post("http://localhost:4000/todos", newTodo);
-
-    dispatch(addTodo(data));
+    mutation.mutate(newTodo);
     setTitle("");
     setContent("");
   };
 
   return (
-    <ScInputBox>
-      제목 : <input required value={title} onChange={titleOnchangeHandler} />
-      내용: <input required value={content} onChange={contentOnchangeHandler} />
-      <button onClick={onClickBtnHandler}>등록하기</button>
+    <ScInputBox onSubmit={onClickBtnHandler}>
+      제목 : <ScInput required value={title} onChange={titleOnchangeHandler} />
+      내용:{" "}
+      <ScInput required value={content} onChange={contentOnchangeHandler} />
+      <ScBtn>등록하기</ScBtn>
     </ScInputBox>
   );
 }
 
-const ScInputBox = styled.div`
+const ScInputBox = styled.form`
   display: flex;
   align-items: center;
   height: 50px;
-  background-color: #bfe9e8;
+  background-color: #fffbd3;
   gap: 10px;
   padding: 10px;
 `;
 
+const ScInput = styled.input`
+  border-radius: 5px;
+`;
+const ScBtn = styled.button`
+  background-color: lightgray;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+
+  &:hover {
+    box-shadow: 3px 2px 10px 1px rgba(0, 0, 0, 0.24);
+    transform: scale(0.98);
+  }
+`;
 export default Input;

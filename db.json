@@ -1,27 +1,15 @@
 {
   "todos": [
     {
-      "id": "20f5dd55-3650-0698-c293-b4b40c4aaa76",
-      "title": "ㅁㅁㅁㅁ",
-      "content": "ㅁㅁㄴㅇㄹ",
+      "id": "20cf836d-ad5c-9699-58fa-efe83190cb2c",
+      "title": "리엑트  ",
+      "content": "복습하기",
       "isDone": true
     },
     {
-      "id": "037dacff-ff09-c5b1-dfd9-2a8729d873e7",
-      "title": "asdf",
-      "content": "agaggds",
-      "isDone": true
-    },
-    {
-      "id": "d7fff6ea-aa2f-9591-4a28-07b3fa28d47b",
-      "title": "삭제할 데이터",
-      "content": "완료 취소 변경",
-      "isDone": false
-    },
-    {
-      "id": "d1760d48-7b23-3f75-b9d7-b860a44b987a",
-      "title": "",
-      "content": "",
+      "id": "df474c2c-694a-2865-88ee-ffc748a195e5",
+      "title": "타입스크립트 ",
+      "content": "공부하기",
       "isDone": false
     }
   ]
