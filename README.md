@@ -7,3 +7,5 @@
 ### component:
 Input.tsx - 할일 목록을 입력하는 컴포넌트<br/>
 TodoList.tsx - 입력된 목록들을 보여주고 관리하는 컴포넌트
+
+![image](https://github.com/jiwonson0629/nbc_ts_ToDoList/assets/116898447/6dd6e2b5-6061-4ffc-aafa-37743f458db5)
