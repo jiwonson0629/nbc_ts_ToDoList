@@ -1,0 +1,16 @@
+{
+  "todos": [
+    {
+      "id": "20cf836d-ad5c-9699-58fa-efe83190cb2c",
+      "title": "리엑트  ",
+      "content": "복습하기",
+      "isDone": true
+    },
+    {
+      "id": "df474c2c-694a-2865-88ee-ffc748a195e5",
+      "title": "타입스크립트 ",
+      "content": "공부하기",
+      "isDone": false
+    }
+  ]
+}
